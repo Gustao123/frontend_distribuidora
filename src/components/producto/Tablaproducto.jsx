@@ -13,7 +13,9 @@ const TablaProducto = ({ productos,
      paginaActual,
      establecerPaginaActual,
      abrirModalEliminacion,
-     abrirModalEdicion  
+     abrirModalEdicion, 
+     generarPDFDetalleProducto  
+
     }) => {
   // Renderizado condicional según el estado recibido por props
   if (cargando) {
@@ -65,6 +67,16 @@ const TablaProducto = ({ productos,
           </td>
                 
           <td>
+
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                className="me-2"
+                onClick={() => generarPDFDetalleProducto(producto)}
+              >
+                <i className="bi bi-filetype-pdf"></i>
+              </Button>
+
 
             <Button
                   variant="outline-warning"

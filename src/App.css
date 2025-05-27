@@ -13,5 +13,16 @@
 
 
 
+.titulo-blanco .dropdown-toggle {
+  color: white !important;
+  font-weight: bold;
+}
+
+.titulo-negro .dropdown-toggle {
+  color: rgb(0, 0, 0) !important;
+  font-weight: bold;
+}
+
+
 
 

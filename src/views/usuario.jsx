@@ -6,6 +6,8 @@ import CuadroBusquedas from '../components/busquedas/Cuadrobusquedas';
 import ModalRegistroUsuarios from '../components/usuarios/ModalRegistroUsuarios';
 import ModalEliminacionUsuarios from '../components/usuarios/ModalEliminacionUsuario';
 import ModalEdicionUsuarios from '../components/usuarios/ModalEdicionUsuarios';
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 // Declaración del componente Categorias
 const Usuarios = () => {

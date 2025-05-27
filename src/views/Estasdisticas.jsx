@@ -43,7 +43,7 @@ const [totalesPorMes, setTotalesPorMes] = useState([]);
 
 useEffect(() => {
     cargaVentas();
-      cargaVentasPorEmpleado();
+    cargaVentasPorEmpleado();
 }, []);
 
     return (
@@ -54,9 +54,9 @@ useEffect(() => {
             <Col xs={12} sm={12} md={12} lg={6} className="mb-4">
                 <VentasPorMes meses={meses} totales_por_mes={totalesPorMes} />
             </Col>
-            <br />
+      
         <Col xs={12} sm={12} md={12} lg={6} className="mb-4">
-        <VentasPorEmpleado meses={empleados} totales_por_mes={ventasPorEmpleado} />
+        <VentasPorEmpleado empleados={empleados} totales_por_empleado={ventasPorEmpleado} />
         </Col>
 
         </Row>
