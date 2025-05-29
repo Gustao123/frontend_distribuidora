@@ -37,7 +37,7 @@ const Usuarios = () => {
 
     const obtenerUsuarios = async () => { // Método renombrado a español
       try {
-        const respuesta = await fetch('http://localhost:3000/api/usuarios');
+        const respuesta = await fetch('http://localhost:3001/api/usuarios');
         if (!respuesta.ok) {
           throw new Error('Error al cargar las usuarios');
         }
@@ -76,7 +76,7 @@ const manejarCambioInput = (e) => {
   }
 
   try {
-    const respuesta = await fetch('http://localhost:3000/api/registrarusuarios', {
+    const respuesta = await fetch('http://localhost:3001/api/registrarusuarios', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const eliminarUsuario = async () => {
   if (!usuarioAEliminar) return;
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/eliminarusuarios/${usuarioAEliminar.id_usuario}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/eliminarusuarios/${usuarioAEliminar.id_usuario}`, {
       method: 'DELETE',
     });
 
@@ -145,7 +145,7 @@ const actualizarUsuario = async () => {
   }
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/actualizarusuarios/${usuarioEditada.id_usuario}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/actualizarusuarios/${usuarioEditada.id_usuario}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

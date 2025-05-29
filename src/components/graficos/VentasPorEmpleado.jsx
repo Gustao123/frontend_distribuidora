@@ -9,7 +9,7 @@ const VentasPorEmpleado = ({ empleados, totales_por_empleado }) => {
       {
         label: "Ventas de Empleado (C$)",
         data: totales_por_empleado,
-           backgroundColor: [
+        backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',

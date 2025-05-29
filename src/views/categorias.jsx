@@ -33,7 +33,7 @@ const [mostrarModalEdicion, setMostrarModalEdicion] = useState(false);
 
   const obtenerCategorias = async () => { // Método renombrado a español
       try {
-        const respuesta = await fetch('http://localhost:3000/api/categoria');
+        const respuesta = await fetch('http://localhost:3001/api/categoria');
         if (!respuesta.ok) {
           throw new Error('Error al cargar las categorías');
         }
@@ -71,7 +71,7 @@ const manejarCambioInput = (e) => {
   }
 
   try {
-    const respuesta = await fetch('http://localhost:3000/api/registrarcategoria', {
+    const respuesta = await fetch('http://localhost:3001/api/registrarcategoria', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ const eliminarCategoria = async () => {
   if (!categoriaAEliminar) return;
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/eliminarcategoria/${categoriaAEliminar.id_categoria}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/eliminarcategoria/${categoriaAEliminar.id_categoria}`, {
       method: 'DELETE',
     });
 
@@ -162,7 +162,7 @@ const actualizarCategoria = async () => {
   }
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/actualizarcategoria/${categoriaEditada.id_categoria}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/actualizarcategoria/${categoriaEditada.id_categoria}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

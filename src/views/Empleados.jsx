@@ -41,7 +41,7 @@ const Empleados = () => {
 
       const obtenerEmpleado = async () => { // Método renombrado a español
         try {
-          const respuesta = await fetch('http://localhost:3000/api/empleados');
+          const respuesta = await fetch('http://localhost:3001/api/empleados');
           if (!respuesta.ok) {
             throw new Error('Error al cargar las empleado');
           }
@@ -81,7 +81,7 @@ const agregarEmpleado = async () => {
   }
 
   try {
-    const respuesta = await fetch('http://localhost:3000/api/registrarEmpleados', {
+    const respuesta = await fetch('http://localhost:3001/api/registrarEmpleados', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ const eliminarEmpleado = async () => {
   if (!empleadoAEliminar) return;
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/eliminarempleados/${empleadoAEliminar.id_empleado}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/eliminarempleados/${empleadoAEliminar.id_empleado}`, {
       method: 'DELETE',
     });
 
@@ -154,7 +154,7 @@ const actualizarEmpleado = async () => {
   }
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/actualizarempleados/${empleadoEditado.id_empleado}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/actualizarempleados/${empleadoEditado.id_empleado}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

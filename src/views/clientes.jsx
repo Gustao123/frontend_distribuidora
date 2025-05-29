@@ -41,7 +41,7 @@ const [mostrarModal, setMostrarModal] = useState(false);
 
   const obtenerClientes = async () => { // Método renombrado a español
     try {
-      const respuesta = await fetch('http://localhost:3000/api/clientes');
+      const respuesta = await fetch('http://localhost:3001/api/clientes');
       if (!respuesta.ok) {
         throw new Error('Error al cargar las clientes');
       }
@@ -80,7 +80,7 @@ const manejarCambioInput = (e) => {
   }
 
   try {
-    const respuesta = await fetch('http://localhost:3000/api/registrarclientes', {
+    const respuesta = await fetch('http://localhost:3001/api/registrarclientes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ const eliminarClientes = async () => {
   if (!clienteAEliminar) return;
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/eliminarclientes/${clienteAEliminar.id_cliente}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/eliminarclientes/${clienteAEliminar.id_cliente}`, {
       method: 'DELETE',
     });
 
@@ -152,7 +152,7 @@ const actualizarClientes = async () => {
   }
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/actualizarclientes/${clienteEditado.id_cliente}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/actualizarclientes/${clienteEditado.id_cliente}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

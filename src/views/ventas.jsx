@@ -42,7 +42,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
 
   const obtenerVentas = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/obtenerventas'); // Ruta ajustada al controlador
+      const respuesta = await fetch('http://localhost:3001/api/obtenerventas'); // Ruta ajustada al controlador
       if (!respuesta.ok) {
         throw new Error('Error al cargar las ventas');
       }
@@ -68,7 +68,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
     if (!ventaAEliminar) return;
   
     try {
-      const respuesta = await fetch(`http://localhost:3000/api/eliminarventa/${ventaAEliminar.id_venta}`, {
+      const respuesta = await fetch(`http://localhost:3001/api/eliminarventa/${ventaAEliminar.id_venta}`, {
         method: 'DELETE',
       });
   
@@ -96,7 +96,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
     setCargandoDetalles(true);
     setErrorDetalles(null);
     try {
-      const respuesta = await fetch(`http://localhost:3000/api/obtenerdetallesventas/${id_venta}`);
+      const respuesta = await fetch(`http://localhost:3001/api/obtenerdetallesventas/${id_venta}`);
       if (!respuesta.ok) {
         throw new Error('Error al cargar los detalles de la venta');
       }
@@ -112,7 +112,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
 
   const obtenerClientes = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/clientes');
+      const respuesta = await fetch('http://localhost:3001/api/clientes');
       if (!respuesta.ok) throw new Error('Error al cargar los clientes');
       const datos = await respuesta.json();
       setClientes(datos);
@@ -123,7 +123,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
   
   const obtenerEmpleados = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/empleados');
+      const respuesta = await fetch('http://localhost:3001/api/empleados');
       if (!respuesta.ok) throw new Error('Error al cargar los empleados');
       const datos = await respuesta.json();
       setEmpleados(datos);
@@ -134,7 +134,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
   
   const obtenerProductos = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/productos');
+      const respuesta = await fetch('http://localhost:3001/api/productos');
       if (!respuesta.ok) throw new Error('Error al cargar los productos');
       const datos = await respuesta.json();
       setProductos(datos);
@@ -168,7 +168,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
         detalles: detallesNuevos
       };
   
-      const respuesta = await fetch('http://localhost:3000/api/registrarventa', {
+      const respuesta = await fetch('http://localhost:3001/api/registrarventa', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(ventaData)
@@ -190,7 +190,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
   const abrirModalActualizacion = async (venta) => {
     setCargandoDetalles(true);
     try {
-      const respuestaventa = await fetch(`http://localhost:3000/api/obternerventaporid/${venta.id_venta}`);
+      const respuestaventa = await fetch(`http://localhost:3001/api/obternerventaporid/${venta.id_venta}`);
       if (!respuestaventa.ok) throw new Error('Error al cargar la venta');
       const datosventa = await respuestaventa.json();
   
@@ -207,7 +207,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
       
       setVentaAEditar(datoscompletos);
   
-      const respuesta = await fetch(`http://localhost:3000/api/obtenerdetallesventas/${venta.id_venta}`);
+      const respuesta = await fetch(`http://localhost:3001/api/obtenerdetallesventas/${venta.id_venta}`);
       if (!respuesta.ok) throw new Error('Error al cargar los detalles de la venta');
       const datos = await respuesta.json();
       setDetallesEditados(datos);
@@ -237,7 +237,7 @@ const [detallesNuevos, setDetallesNuevos] = useState([]);
         detalles
       };
       console.log(`Enviando ID venta: ${ventaActualizada.id_venta}`, JSON.stringify(ventaData));
-      const respuesta = await fetch(`http://localhost:3000/api/actualizarventa/${ventaActualizada.id_venta}`, {
+      const respuesta = await fetch(`http://localhost:3001/api/actualizarventa/${ventaActualizada.id_venta}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(ventaData)

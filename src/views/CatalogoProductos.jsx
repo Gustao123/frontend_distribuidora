@@ -10,7 +10,7 @@ const CatalogoProductos = () => {
   // Obtener productos
   const obtenerProductos = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/productos');
+      const respuesta = await fetch('http://localhost:3001/api/productos');
       if (!respuesta.ok) throw new Error('Error al cargar los productos');
       const datos = await respuesta.json();
       setListaProductos(datos);

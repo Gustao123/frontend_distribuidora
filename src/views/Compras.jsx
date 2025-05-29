@@ -36,7 +36,7 @@ const Compras = () => {
 
   const obtenerCompras = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/obtenercompras');
+      const respuesta = await fetch('http://localhost:3001/api/obtenercompras');
       if (!respuesta.ok) throw new Error('Error al cargar las compras');
       const datos = await respuesta.json();
       setListaCompras(datos);
@@ -49,7 +49,7 @@ const Compras = () => {
 
   const obtenerEmpleados = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/empleados');
+      const respuesta = await fetch('http://localhost:3001/api/empleados');
       if (!respuesta.ok) throw new Error('Error al cargar los empleados');
       const datos = await respuesta.json();
       setEmpleados(datos);
@@ -60,7 +60,7 @@ const Compras = () => {
 
   const obtenerProductos = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/productos');
+      const respuesta = await fetch('http://localhost:3001/api/productos');
       if (!respuesta.ok) throw new Error('Error al cargar los productos');
       const datos = await respuesta.json();
       setProductos(datos);
@@ -79,7 +79,7 @@ const Compras = () => {
     setCargandoDetalles(true);
     setErrorDetalles(null);
     try {
-      const respuesta = await fetch(`http://localhost:3000/api/obtenerdetallescompra/${id_compra}`);
+      const respuesta = await fetch(`http://localhost:3001/api/obtenerdetallescompra/${id_compra}`);
       if (!respuesta.ok) throw new Error('Error al cargar los detalles de la compra');
       const datos = await respuesta.json();
       setDetallesCompra(datos);
@@ -94,7 +94,7 @@ const Compras = () => {
   const eliminarCompra = async () => {
     if (!compraAEliminar) return;
     try {
-      const respuesta = await fetch(`http://localhost:3000/api/eliminarcompra/${compraAEliminar.id_compra}`, {
+      const respuesta = await fetch(`http://localhost:3001/api/eliminarcompra/${compraAEliminar.id_compra}`, {
         method: 'DELETE',
       });
       if (!respuesta.ok) throw new Error('Error al eliminar la compra');
@@ -132,7 +132,7 @@ const Compras = () => {
         total_compra: detallesNuevos.reduce((sum, d) => sum + (d.cantidad * d.precio_unitario), 0),
         detalles: detallesNuevos
       };
-      const respuesta = await fetch('http://localhost:3000/api/registrarcompra', {
+      const respuesta = await fetch('http://localhost:3001/api/registrarcompra', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(compraData)
@@ -151,7 +151,7 @@ const Compras = () => {
   const abrirModalActualizacion = async (compra) => {
     setCargandoDetalles(true);
     try {
-      const respuestacompra = await fetch(`http://localhost:3000/api/obtenercompraporid/${compra.id_compra}`);
+      const respuestacompra = await fetch(`http://localhost:3001/api/obtenercompraporid/${compra.id_compra}`);
       if (!respuestacompra.ok) throw new Error('Error al cargar la compra');
       const datoscompra = await respuestacompra.json();
 
@@ -165,7 +165,7 @@ const Compras = () => {
 
       setCompraAEditar(datoscompletos);
 
-      const respuesta = await fetch(`http://localhost:3000/api/obtenerdetallescompra/${compra.id_compra}`);
+      const respuesta = await fetch(`http://localhost:3001/api/obtenerdetallescompra/${compra.id_compra}`);
       if (!respuesta.ok) throw new Error('Error al cargar los detalles de la compra');
       const datos = await respuesta.json();
       setDetallesEditados(datos);
@@ -191,7 +191,7 @@ const Compras = () => {
         total_compra: detalles.reduce((sum, d) => sum + (d.cantidad * d.precio_unitario), 0),
         detalles
       };
-      const respuesta = await fetch(`http://localhost:3000/api/actualizarcompra/${compraActualizada.id_compra}`, {
+      const respuesta = await fetch(`http://localhost:3001/api/actualizarcompra/${compraActualizada.id_compra}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(compraData)

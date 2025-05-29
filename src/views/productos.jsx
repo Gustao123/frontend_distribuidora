@@ -62,7 +62,7 @@ const Productos = () => {
   // Obtener categorías para el dropdown
   const obtenerCategorias = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/categoria');
+      const respuesta = await fetch('http://localhost:3001/api/categoria');
       if (!respuesta.ok) throw new Error('Error al cargar las categorías');
       const datos = await respuesta.json();
       setListaCategorias(datos);
@@ -93,7 +93,7 @@ const Productos = () => {
     }
 
     try {
-      const respuesta = await fetch('http://localhost:3000/api/registrarproducto', {
+      const respuesta = await fetch('http://localhost:3001/api/registrarproducto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const eliminarProducto = async () => {
   if (!ProductoAEliminar) return;
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/eliminarproductos/${ProductoAEliminar.id_producto}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/eliminarproductos/${ProductoAEliminar.id_producto}`, {
       method: 'DELETE',
     });
 
@@ -171,7 +171,7 @@ const actualizarProductos = async () => {
   }
 
   try {
-    const respuesta = await fetch(`http://localhost:3000/api/actualizarproductos/${productoEditado.id_producto}`, {
+    const respuesta = await fetch(`http://localhost:3001/api/actualizarproductos/${productoEditado.id_producto}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

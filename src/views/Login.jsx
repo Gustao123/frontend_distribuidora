@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import LoginForm from "../components/login/LoginForm";
-import "../app.css";
+import "../App.css";
 
 const Login = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const respuesta = await fetch("http://localhost:3000/api/verificar", {
+      const respuesta = await fetch("http://localhost:3001/api/verificar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
