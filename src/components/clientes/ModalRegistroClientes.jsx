@@ -9,7 +9,36 @@ const ModalRegistroCliente = ({
   manejarCambioInput,
   agregarCliente,
   errorCarga,
+
 }) => {
+
+  const validarletras = (e) => {
+    const charCode = e.which ? e.which : e.keyCode;
+
+    // Permitir solo letras [A-Z, a-z]
+    if (
+        (charCode < 65 || charCode > 90) && // Letras mayúsculas
+        (charCode < 97 || charCode > 122) && // Letras minúsculas
+        charCode !== 46 && // Retroceso
+        charCode !== 8 // Borrar
+    ) {
+        e.preventDefault(); // Evita que se escriba el carácter
+    }
+};
+
+const validarFormulario = () => {
+    return (
+        nuevoCliente.primer_nombre.trim() !== "" &&
+        nuevoCliente.segundo_nombre.trim() !== "" &&
+        nuevoCliente.apellido.trim() !== "" &&
+        nuevoCliente.celular.trim() !== "" &&
+        nuevoCliente.direccion.trim() !== "" &&
+        nuevoCliente.cedula.trim() !== ""
+    );
+};
+
+
+
   return (
     <Modal show={mostrarModal} onHide={() => setMostrarModal(false)}>
       <Modal.Header closeButton>
@@ -23,6 +52,7 @@ const ModalRegistroCliente = ({
               type="text"
               name="primer_nombre"
               value={nuevoCliente.primer_nombre}
+              onKeyDown={validarletras}
               onChange={manejarCambioInput}
               placeholder="Ingresa el primer nombre (máx. 20 caracteres)"
               maxLength={20}
@@ -36,6 +66,7 @@ const ModalRegistroCliente = ({
               rows={3}
               name="segundo_nombre"
               value={nuevoCliente.segundo_nombre}
+                onKeyDown={validarletras}
               onChange={manejarCambioInput}
               placeholder="Ingresa la segundo nombre (máx. 100 caracteres)"
               maxLength={100}
@@ -49,6 +80,7 @@ const ModalRegistroCliente = ({
               rows={3}
               name="primer_apellido"
               value={nuevoCliente.primer_apellido}
+                onKeyDown={validarletras}
               onChange={manejarCambioInput}
               placeholder="Ingresa el primer apellido (máx. 100 caracteres)"
               maxLength={100}
@@ -62,6 +94,7 @@ const ModalRegistroCliente = ({
               rows={3}
               name="segundo_apellido"
               value={nuevoCliente.segundo_apellido}
+                onKeyDown={validarletras}
               onChange={manejarCambioInput}
               placeholder="Ingresa el segundo apellido (máx. 100 caracteres)"
               maxLength={100}
@@ -75,6 +108,7 @@ const ModalRegistroCliente = ({
               rows={3}
               name="celular"
               value={nuevoCliente.celular}
+                onKeyDown={validarletras}
               onChange={manejarCambioInput}
               placeholder="Ingresa el celular (máx. 50 caracteres)"
               maxLength={100}
@@ -106,6 +140,9 @@ const ModalRegistroCliente = ({
               maxLength={100}
             />
           </Form.Group>
+
+
+        
           {errorCarga && (
             <div className="text-danger mt-2">{errorCarga}</div>
           )}
@@ -117,7 +154,7 @@ const ModalRegistroCliente = ({
         }}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={agregarCliente}>
+        <Button variant="primary" onClick={agregarCliente} disabled={!validarFormulario()}>
           Guardar Cliente
         </Button>
       </Modal.Footer>

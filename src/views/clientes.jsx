@@ -262,6 +262,7 @@ const manejarCambioBusqueda = (e) => {
                   manejarCambioInput={manejarCambioInput}
                   agregarCliente={agregarCliente}
                   errorCarga={errorCarga}
+                 
 
                 />
 

@@ -86,7 +86,7 @@ const Encabezado = () => {
                 <strong>Inicio</strong>
               </Nav.Link>
 
-               <NavDropdown 
+              <NavDropdown 
                   title={
                     <span>
                       {estaColapsado && <i className="bi-bag-heart-fill me-2"></i>}

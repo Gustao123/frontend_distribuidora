@@ -10,10 +10,10 @@ const VentasPorMes = ({ meses, totales_por_mes }) => {
 
   // Define chart data
   const data = {
-      labels: meses,
-    datasets: [
+    labels: meses,
+   datasets: [
       {
-        label: "Ventas de mes (C$)",
+        label: "Ventas de Empleado (C$)",
         data: totales_por_mes,
         backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -113,9 +113,7 @@ const VentasPorMes = ({ meses, totales_por_mes }) => {
   return (
     <Card>
       <Card.Body>
-      <div style={{ height: "300px", justifyContent:"center", alignItems: "center", display:"flex"}}>
-        <Line data={data} options={options} />
-        </div>
+        <Line ref={chartRef} data={data} options={options} />
         <Button variant="primary" onClick={generatePDF} className="mt-3">
           Generar Reporte PDF
         </Button>

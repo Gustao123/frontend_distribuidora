@@ -87,7 +87,7 @@ const ModalRegistroProducto = ({
             />
           </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formImagenProducto">
+        <Form.Group className="mb-3" controlId="formImagenProducto">
         <Form.Label>Imagen</Form.Label>
         <Form.Control
           type="file"

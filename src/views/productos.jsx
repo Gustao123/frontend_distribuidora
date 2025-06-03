@@ -45,7 +45,7 @@ const Productos = () => {
 
   const obtenerProductos = async () => { // Método renombrado a español
     try {
-      const respuesta = await fetch('http://localhost:3000/api/productos');
+      const respuesta = await fetch('http://localhost:3001/api/productos');
       if (!respuesta.ok) {
         throw new Error('Error al cargar las productos');
       }
@@ -160,43 +160,50 @@ const manejarCambioInputEdicion = (e) => {
 
 
 const actualizarProductos = async () => {
-  if (!productoEditado?.nombre_producto 
-    || !productoEditado?.descripcion_producto
-    || !productoEditado?.id_categoria
-    || !productoEditado?.precio_unitario
-    || !productoEditado?.stock)
-     {
-    setErrorCarga("Por favor, completa todos los campos antes de guardar.");
-    return;
-  }
-
-  try {
-    const respuesta = await fetch(`http://localhost:3001/api/actualizarproductos/${productoEditado.id_producto}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        nombre_producto: productoEditado.nombre_producto,
-        descripcion_producto: productoEditado.descripcion_producto,
-        id_categoria: productoEditado.id_categoria,
-        precio_unitario: productoEditado.precio_unitario,
-        stock: productoEditado.stock,
-      }),
-    });
-
-    if (!respuesta.ok) {
-      throw new Error('Error al actualizar la producto');
+    if (
+      !productoEditado?.nombre_producto ||
+      !productoEditado?.descripcion_producto ||
+      !productoEditado?.id_categoria ||
+      !productoEditado?.precio_unitario ||
+      !productoEditado?.stock
+    ) {
+      setErrorCarga("Por favor, completa todos los campos antes de guardar.");
+      return;
     }
 
-    await obtenerProductos();
-    setMostrarModalEdicion(false);
-    setProductoEditado(null);
-    setErrorCarga(null);
-  } catch (error) {
-    setErrorCarga(error.message);
-  }
-};
+    try {
+      const respuesta = await fetch(
+        `http://localhost:3001/api/actualizarproductos/${productoEditado.id_producto}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nombre_producto: productoEditado.nombre_producto,
+            descripcion_producto: productoEditado.descripcion_producto,
+            id_categoria: productoEditado.id_categoria,
+            precio_unitario: productoEditado.precio_unitario,
+            stock: productoEditado.stock,
+            imagen: productoEditado.imagen // Incluir imagen
+          }),
+        }
+      );
+
+      if (!respuesta.ok) {
+        const errorData = await respuesta.json(); // Obtener detalles del error
+        throw new Error(errorData.mensaje || `Error ${respuesta.status}: ${respuesta.statusText}`);
+      }
+
+      await obtenerProductos();
+      setMostrarModalEdicion(false);
+      setProductoEditado(null);
+      setErrorCarga(null);
+    } catch (error) {
+      setErrorCarga(error.message); // Mostrar el mensaje de error en la vista
+      console.error('Error al actualizar:', error);
+    }
+  };
 
 
 const abrirModalEdicion = (producto) => {
@@ -358,8 +365,6 @@ const generarPDFProductos = () => {
           // Guardar archivo
           const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
           saveAs(blob, nombreArchivo);
-
-
     }
 
   // Renderizado de la vista

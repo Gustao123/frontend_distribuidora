@@ -1,9 +1,11 @@
 import React from "react";
 import { Col, Card, Badge, Stack } from 'react-bootstrap';
+import { Zoom } from "react-awesome-reveal";
 
 const Tarjeta = ({ indice, nombre_producto, descripcion_producto, precio_unitario, stock, id_categoria, imagen }) => {
   return (
     <Col lg={3} className="mt-3">
+      <Zoom cascade triggerOnce delay={10} duration={600}>
       <Card border="">
         <Card.Img
           variant="top"
@@ -27,6 +29,7 @@ const Tarjeta = ({ indice, nombre_producto, descripcion_producto, precio_unitari
           </Stack>
         </Card.Body>
       </Card>
+      </Zoom>
     </Col>
   );
 };
