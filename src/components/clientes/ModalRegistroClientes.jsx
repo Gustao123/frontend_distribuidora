@@ -26,6 +26,20 @@ const ModalRegistroCliente = ({
     }
 };
 
+const validarnumeros = (e) => {
+    const charCode = e.which ? e.which : e.keyCode;
+
+    // Permitir solo números [0-9]
+    if (
+        (charCode < 48 || charCode > 57) && // Números
+        charCode !== 8 && // Retroceso
+        charCode !== 46 // Borrar
+    ) {
+        e.preventDefault(); // Evita que se escriba el carácter
+    }
+};
+
+
 const validarFormulario = () => {
     return (
         nuevoCliente.primer_nombre.trim() !== "" &&
@@ -108,7 +122,6 @@ const validarFormulario = () => {
               rows={3}
               name="celular"
               value={nuevoCliente.celular}
-                onKeyDown={validarletras}
               onChange={manejarCambioInput}
               placeholder="Ingresa el celular (máx. 50 caracteres)"
               maxLength={100}
